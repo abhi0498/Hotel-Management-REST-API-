@@ -4,13 +4,22 @@ const mongoose = require('mongoose')
 const app = express()
 const morgan = require('morgan')
 //Importing routes
-const roomRoute = require('./routes/room')
+const hotelRoute = require('./routes/Hotel')
 
+var winston = require('winston');
+require('winston-mongodb');
 
 //MiddleWare
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('combined')) //server side requests logging
+winston.add(new winston.transports.MongoDB({
+    db: "mongodb://127.0.0.1:27017/hotel_managment", options: {
+        useNewUrlParser: true,
+        useUnifiedTopology: true
+    }
+}));
+
 
 //Connecting to DB
 mongoose
@@ -31,7 +40,7 @@ app.get('', (req, res) => {
 })
 
 //USing Imported Routes
-app.use('/room', roomRoute)
+app.use('/hotel', hotelRoute)
 
 
 
