@@ -36,4 +36,4 @@
     home_page: String,
     phone: String
 
-[View More Projects By Me](https://gothub.com/abhi0498)
+[View More Projects By Me](https://github.com/abhi0498)
